@@ -7,28 +7,26 @@
 from database import sessionHelper
 import hashlib
 import time
+from session.sessionObjects import SessionBlock
 
 MAGIC_SALT = "93C632F6915879116741159447529D54BCACB84FC97EE6FFCE2A9296E4ED039F"
 
 
-class SessionBlock:
-    def __init__(self, name, uid, sessKey):
-        self.name = name
-        self.uid = uid
-        self.sessKey = sessKey
 
 
-def authUser(name, passwd) -> bool:
-    return sessionHelper.authUser(name, passwd)
+def authUser(name, passwd) -> int:
+    uid = sessionHelper.authUser(name, passwd)
+    return uid
 
 
 def createSession(name, uid) -> SessionBlock:
     # Check if user already exist
-    if sessionHelper.hasUser(uid):
-        return SessionBlock(None, None, None)
+    tmp = sessionHelper.hasUser(uid)
+    if tmp.uid > 0:
+        return tmp
     # build new hash for user
     newRawString = str(time.time()) + name + str(uid) + MAGIC_SALT
-    newHash = hashlib.sha256(newRawString).hexdigest()
+    newHash = hashlib.sha256(newRawString.encode('utf-8')).hexdigest()
     sessionHelper.addSessionKey(str(newHash), uid)
     return SessionBlock(name, uid, newHash);
 

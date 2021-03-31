@@ -1,13 +1,22 @@
 from flask import Flask
 from flask import jsonify, request
 from session import session
+import intro
+from json import JSONEncoder
+import json
 
 app = Flask(__name__)
 
 
+class encoderJSON(JSONEncoder):
+    def default(self, o):
+        return o.__dict__
+
+
 @app.route('/')
 def hello_world():
-    return "/session/verify/ : send POST request JSON Format ({ 'user' : 'username','pwd' : 'passwordHash'}) to the URL to check if user exists returns { 'status' : 'ok'} <br><br> HOW TO DO: https://www.geeksforgeeks.org/how-to-send-a-json-object-to-a-server-using-javascript/"
+    return intro.readme
+
 
 # Session API Start
 
@@ -16,10 +25,12 @@ def authLogin():
     rawData = request.get_json()
     userName = rawData['user']
     paswd = rawData['pwd']
-    session.authUser(userName, paswd)
-    retCode = {'status':'ok'}
-    return jsonify(retCode)
+    uid = session.authUser(userName, paswd)
+    if uid < 0:
+        return jsonify({'status': 'failed'})
+    userBlock = session.createSession(userName, uid)
+    userBlock = encoderJSON().encode(userBlock)
+    xblock = json.loads(userBlock)
 
-"""
-curl --header "Content-Type: application/json"  --request POST  --data '{"user":"someUser","pwd:"secret"}' http://127.0.0.1:5000//session/verify
-"""
+    xblock.update({'status': 'ok'})
+    return json.dumps(xblock)

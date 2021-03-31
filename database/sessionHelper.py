@@ -4,7 +4,7 @@
     @Author: Divakar Lakhera
     Todo: Add database support
 """
-
+from session.sessionObjects import SessionBlock
 """
     def addSessionKey(key,uid) 
     returns: Boolean
@@ -18,13 +18,13 @@ def addSessionKey(key, uid) -> bool:
 
 
 """
-    def addSessionKey(key,uid)
+    def addSessionKey(sessionBlock)
     returns: Boolean
     Removes user Session Key from the database    
 """
 
 
-def revokeSessionKey(key, uid) -> bool:
+def revokeSessionKey(sessionBlock) -> bool:
     # TODO: database support
     return True
 
@@ -48,18 +48,19 @@ def hasKey(key, uid) -> bool:
 """
 
 
-def hasUser(uid) -> bool:
+def hasUser(uid) -> SessionBlock:
     # TODO: database support
-    return True
+    return SessionBlock("ok", -1, "ok")
 
 
 """
     def authUser(user,passwd) -> bool:
-    returns: Boolean
+    returns: uid of user (integer)
     Checks if user exist with provided username and password 
+    Is UID is negative no user exists
 """
 
 
-def authUser(user, passwd) -> bool:
+def authUser(user, passwd) -> int:
     # TODO: database support
-    return True
+    return 1
