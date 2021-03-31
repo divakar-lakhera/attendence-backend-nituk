@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return "Hello Boiz"
+    return "/session/verify/ : send POST request ({ 'user' : 'username','pwd' : 'passwordHash'}) to the URL to check " \
+           "if user exists /n returns { 'status' : 'ok'} "
 
 
 # Session API Start
