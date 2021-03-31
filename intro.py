@@ -1,5 +1,5 @@
 readme = """
-<b> NIT UK - Grades Manager - Backend API <b><br>
+<b> NIT UK - Grades Manager - Backend API </b> <br>
 ---------------------------------------------<br><br>
 <b> /session/verify/ </b> <br>
 Accepts :  JSON Object POST Request  { 'user' : 'UserName' , 'pwd' : 'Password Hashed'} <br>
