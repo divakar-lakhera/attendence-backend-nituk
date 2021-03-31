@@ -7,9 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return "/session/verify/ : send POST request ({ 'user' : 'username','pwd' : 'passwordHash'}) to the URL to check " \
-           "if user exists /n returns { 'status' : 'ok'} "
-
+    return "/session/verify/ : send POST request JSON Format ({ 'user' : 'username','pwd' : 'passwordHash'}) to the URL to check if user exists returns { 'status' : 'ok'} <br><br> HOW TO DO: https://www.geeksforgeeks.org/how-to-send-a-json-object-to-a-server-using-javascript/"
 
 # Session API Start
 
