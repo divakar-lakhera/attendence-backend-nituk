@@ -4,9 +4,10 @@ from session import session
 import intro
 from json import JSONEncoder
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+cors = CORS(app)
 
 class encoderJSON(JSONEncoder):
     def default(self, o):
