@@ -7,7 +7,7 @@ import json
 from flask_cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app)
+CORS(app)
 
 class encoderJSON(JSONEncoder):
     def default(self, o):
@@ -20,7 +20,6 @@ def hello_world():
 
 
 # Session API Start
-
 @app.route('/session/verify/', methods=['POST'])
 def authLogin():
     rawData = request.get_json()
