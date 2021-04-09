@@ -5,9 +5,11 @@ import intro
 from json import JSONEncoder
 import json
 from flask_cors import CORS
+import userFetch
 
 app = Flask(__name__)
 CORS(app)
+
 
 class encoderJSON(JSONEncoder):
     def default(self, o):
@@ -34,3 +36,14 @@ def authLogin():
 
     xblock.update({'status': 'ok'})
     return json.dumps(xblock)
+
+
+@app.route('/user/', methods=['POST'])
+def getUserInfo():
+    rawData = request.get_json()
+    sessKey = rawData['sessKey']
+    userId = rawData['uid']
+    returnBlock = userFetch.getUserInfo(sessKey, userId)
+    returnBlock = encoderJSON().encode(returnBlock)
+    returnBlock = json.loads(returnBlock)
+    return jsonify(returnBlock)
