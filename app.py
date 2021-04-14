@@ -6,7 +6,7 @@ from json import JSONEncoder
 import json
 from flask_cors import CORS
 import userFetch
-from subjectAPI import *
+from subjectAPIs import *
 
 app = Flask(__name__)
 CORS(app)
