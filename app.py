@@ -25,7 +25,7 @@ def convertToJSON(block):
 
 @app.route('/')
 def hello_world():
-    return jsonify({"status": "ready"})
+    return intro.readme
 
 
 # Session API Start
