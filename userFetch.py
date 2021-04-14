@@ -11,8 +11,12 @@ def getUserInfo(sessKey, uid):
     node = {"status": "ok",
             "name": "dummy",
             "userType": 0,
-            "subjects": ["subject1", "subject2", "subject3"],
-            "profs":["x1","x2","x3"]
+            "subjects": ["subject1",
+                         "subject2",
+                         "subject3"],
+            "profs": ["x1",
+                      "x2",
+                      "x3"]
             }
     """
         TODO : Database Support
