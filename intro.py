@@ -51,11 +51,6 @@ Removes Student to a specific student. <br>
 Accepts : JSON Object POST Request {  "sessKey": SHA256 Session Key , "uid": userID , "subjectId": "CSL012" , "studentID":" BT18CSE002" } <br>
 Returns : JSON Object { "status" : "ok" } or fail <br>
 <br>
-<b> /subject/removeStudent/ </b><br>
-Removes Student to a specific student. <br>
-Accepts : JSON Object POST Request {  "sessKey": SHA256 Session Key , "uid": userID , "subjectId": "CSL012" , "studentID":" BT18CSE002" } <br>
-Returns : JSON Object { "status" : "ok" } or fail <br>
-<br>
 <b> /subject/auditAdd/ </b><br>
 Adds Student to audit list in that subject <br>
 Accepts : JSON Object POST Request {  "sessKey": SHA256 Session Key , "uid": userID , "subjectId": "CSL012" , "studentID":" BT18CSE002" } <br>
