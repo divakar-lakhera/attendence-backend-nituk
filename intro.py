@@ -10,7 +10,20 @@ Note : If authorisation fails, status will be set to "failed" and other keys may
 <br>
 <b> /user/ </b><br>
 Accepts : JSON Object POST Request { 'sessKey' : SHA256 Session Key , 'uid' : User ID } <br>
-Returns : JSON Object { 'name' : Current User Name, "
+Returns : JSON Object Format -- <br>
+&emsp;{   <br>
+&emsp;&emsp;    "status": "ok",<br>
+&emsp;&emsp;    "name": "dummy",<br>
+&emsp;&emsp;   "userType": 0 (0 is teacher, 1 is admin),<br>
+&emsp;&emsp;    "subjects": [<br>
+&emsp;&emsp;&emsp;                "subject1",<br>
+&emsp;&emsp;&emsp;                "subject2",<br>
+&emsp;&emsp;&emsp;                 "subject3"],<br>
+&emsp;&emsp;        "profs":[<br>
+&emsp;&emsp;&emsp;                "x1",<br>
+&emsp;&emsp;&emsp;                "x2",<br>
+&emsp;&emsp;&emsp;                "x3"]<br>
+&emsp;}<br>
 <br>
 <br>
 ---------------------------------------------<br>
