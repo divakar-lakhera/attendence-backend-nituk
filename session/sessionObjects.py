@@ -3,3 +3,4 @@ class SessionBlock:
         self.name = name
         self.uid = uid
         self.sessKey = sessKey
+        self.serverNode = -1

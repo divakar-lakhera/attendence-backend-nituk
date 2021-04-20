@@ -63,4 +63,4 @@ def hasUser(uid) -> SessionBlock:
 
 def authUser(user, passwd) -> int:
     # TODO: database support
-    return 1
+    return 100

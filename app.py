@@ -7,9 +7,12 @@ import json
 from flask_cors import CORS
 import userFetch
 from subjectAPIs import *
+import random
 
 app = Flask(__name__)
 CORS(app)
+
+systemNode = random.randint(100, 500)
 
 
 class encoderJSON(JSONEncoder):
@@ -38,6 +41,7 @@ def authLogin():
     if uid < 0:
         return jsonify({'status': 'failed'})
     userBlock = session.createSession(userName, uid)
+    userBlock.serverNode = systemNode
     userBlock = encoderJSON().encode(userBlock)
     xblock = json.loads(userBlock)
 
@@ -49,8 +53,12 @@ def authLogin():
 def getUserInfo():
     rawData = request.get_json()
     sessKey = rawData['sessKey']
-    userId = rawData['uid']
+    userId = int(rawData['uid'])
+    sNode = int(rawData['serverNode'])
+    if sNode != systemNode:
+        return jsonify({'status': 'bad'})
     returnBlock = userFetch.getUserInfo(sessKey, userId)
+    returnBlock['status'] = 'ok';
     returnBlock = encoderJSON().encode(returnBlock)
     returnBlock = json.loads(returnBlock)
     return jsonify(returnBlock)
@@ -62,7 +70,14 @@ def getSubList():
     sessKey = rawData['sessKey']
     userId = rawData['uid']
     subId = rawData['subjectId']
+    sNode = int(rawData['serverNode'])
+    print(sNode)
+    print(sessKey)
+    if sNode != systemNode:
+        return jsonify({'status': 'bad'})
     returnBlock = getSubject(sessKey, userId, subId)
+    returnBlock['status'] = 'ok';
+    print(returnBlock)
     return jsonify(convertToJSON(returnBlock))
 
 
