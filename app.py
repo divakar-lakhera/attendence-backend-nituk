@@ -71,8 +71,6 @@ def getSubList():
     userId = rawData['uid']
     subId = rawData['subjectId']
     sNode = int(rawData['serverNode'])
-    print(sNode)
-    print(sessKey)
     if sNode != systemNode:
         return jsonify({'status': 'bad'})
     returnBlock = getSubject(sessKey, userId, subId)
@@ -163,6 +161,9 @@ def updatePacket():
     sessKey = rawData['sessKey']
     userId = rawData['uid']
     subId = rawData['subjectId']
+    sNode = int(rawData['serverNode'])
+    if sNode != systemNode:
+        return jsonify({'status': 'bad'})
     return jsonify(
         convertToJSON(
             updateSubjectBlock(

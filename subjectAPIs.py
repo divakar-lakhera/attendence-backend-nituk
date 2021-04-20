@@ -47,9 +47,12 @@ def updateSubjectBlock(sessKey, uid, subjectID, packet):
         return {"status": "failed"}
     # Start Update on database
     # Use Subject ID to select table
-    dataRows = packet['dataBlock']['numRows']
-    for i in range(1, dataRows + 1):
-        idx = "row_" + str(i)
-        print(packet['dataBlock'][idx])
+    datablock = packet['data']
+    for i in datablock:
+        for j in range(7):
+            try:
+                subjects.globalsTableSubjects[subjectID]['data'][i]['marks'][j] = datablock[i][j]
+            except KeyError:
+                continue
     # TODO : Add Database Support
     return {'status': 'ok'}
